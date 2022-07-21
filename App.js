@@ -24,15 +24,13 @@ export default function App() {
             flexDirection: 'row',
             justifyContent: 'center',
             alignItems: "center",
-            alignContent: "center",
-            flexWrap: "wrap"
+            alignContent: "center"
         }}>
             <View style={{
                 backgroundColor: 'green',
-                flexBasis: 100, // width or height
-                flexGrow: 1, // same result as flex 1
-                // width: 100,
-                height: 100
+                width: 400,
+                height: 100,
+                flexShrink: 1
             }}/>
             <View style={{
                 backgroundColor: 'tomato',

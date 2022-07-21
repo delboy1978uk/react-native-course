@@ -23,7 +23,9 @@ export default function App() {
             flex: 1,
             flexDirection: 'row',
             justifyContent: 'center',
-            alignItems: "baseline"
+            alignItems: "center",
+            alignContent: "center",
+            flexWrap: "wrap"
         }}>
             <View style={{
                 backgroundColor: 'orange',
@@ -33,10 +35,20 @@ export default function App() {
             <View style={{
                 backgroundColor: '#eee',
                 width: 100,
-                height: 200
+                height: 100
             }}/>
             <View style={{
                 backgroundColor: 'green',
+                width: 100,
+                height: 100
+            }}/>
+            <View style={{
+                backgroundColor: 'tomato',
+                width: 100,
+                height: 100
+            }}/>
+            <View style={{
+                backgroundColor: 'lime',
                 width: 100,
                 height: 100
             }}/>

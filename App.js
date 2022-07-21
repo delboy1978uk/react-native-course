@@ -1,61 +1,8 @@
-import {StatusBar} from 'expo-status-bar';
-import {
-    Alert,
-    Dimensions,
-    StyleSheet,
-    Text,
-    SafeAreaView,
-    Image,
-    TouchableWithoutFeedback,
-    TouchableOpacity,
-    TouchableHighlight,
-    Button,
-    Platform,
-    View
-} from 'react-native';
-import {useDimensions, useDeviceOrientation} from "@react-native-community/hooks";
+import React from 'react';
+import WelcomeScreen from './app/screens/WelcomeScreen';
 
 export default function App() {
-
     return (
-        <View style={{
-            backgroundColor: '#fff',
-            flex: 1,
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: "center",
-            alignContent: "center"
-        }}>
-            <View style={{
-                backgroundColor: 'green',
-                width: 100,
-                height: 100,
-                top: 20,
-                left: 20,
-                position: "absolute"
-            }}/>
-            <View style={{
-                backgroundColor: 'tomato',
-                width: 100,
-                height: 100,
-                bottom: 20
-            }}/>
-            <View style={{
-                backgroundColor: 'lime',
-                width: 100,
-                height: 100
-            }}/>
-        </View>
+        <WelcomeScreen />
     );
 }
-
-const customStyle = {backgroundColor: '#eee'};
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        // alignItems: 'center',
-        // justifyContent: 'center',
-        padding: Platform.OS === "android" ? StatusBar.currentHeight : 0
-    },
-});

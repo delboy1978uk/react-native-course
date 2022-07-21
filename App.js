@@ -20,19 +20,23 @@ export default function App() {
     return (
         <View style={{
             backgroundColor: '#fff',
-            flex: 1
+            flex: 1,
+            flexDirection: 'row'
         }}>
             <View style={{
                 backgroundColor: 'orange',
-                flex: 2
+                width: 100,
+                height: 100
             }}/>
             <View style={{
                 backgroundColor: 'white',
-                flex: 1
+                width: 100,
+                height: 100
             }}/>
             <View style={{
                 backgroundColor: 'green',
-                flex: 1
+                width: 100,
+                height: 100
             }}/>
         </View>
     );

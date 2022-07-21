@@ -28,14 +28,17 @@ export default function App() {
         }}>
             <View style={{
                 backgroundColor: 'green',
-                width: 400,
+                width: 100,
                 height: 100,
-                flexShrink: 1
+                top: 20,
+                left: 20,
+                position: "absolute"
             }}/>
             <View style={{
                 backgroundColor: 'tomato',
                 width: 100,
-                height: 100
+                height: 100,
+                bottom: 20
             }}/>
             <View style={{
                 backgroundColor: 'lime',

@@ -21,8 +21,8 @@ export default function App() {
         <SafeAreaView style={[styles.container, customStyle]}>
             <View style={{
                 backgroundColor: 'dodgerblue',
-                width: '50%',
-                height: 70
+                width: '100%',
+                height: '30%' 
             }}>
 
             </View>

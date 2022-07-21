@@ -13,16 +13,17 @@ import {
     Platform,
     View
 } from 'react-native';
+import {useDimensions} from "@react-native-community/hooks";
 
 export default function App() {
-    console.log(Dimensions.get('screen'))
+    console.log(useDimensions())
 
     return (
         <SafeAreaView style={[styles.container, customStyle]}>
             <View style={{
                 backgroundColor: 'dodgerblue',
                 width: '100%',
-                height: '30%' 
+                height: '30%'
             }}>
 
             </View>

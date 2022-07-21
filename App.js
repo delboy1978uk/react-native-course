@@ -21,17 +21,19 @@ export default function App() {
         <View style={{
             backgroundColor: '#fff',
             flex: 1,
-            flexDirection: 'row'
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: "baseline"
         }}>
             <View style={{
                 backgroundColor: 'orange',
                 width: 100,
-                height: 100
+                height: 300
             }}/>
             <View style={{
-                backgroundColor: 'white',
+                backgroundColor: '#eee',
                 width: 100,
-                height: 100
+                height: 200
             }}/>
             <View style={{
                 backgroundColor: 'green',

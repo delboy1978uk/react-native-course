@@ -28,18 +28,10 @@ export default function App() {
             flexWrap: "wrap"
         }}>
             <View style={{
-                backgroundColor: 'orange',
-                width: 100,
-                height: 300
-            }}/>
-            <View style={{
-                backgroundColor: '#eee',
-                width: 100,
-                height: 100
-            }}/>
-            <View style={{
                 backgroundColor: 'green',
-                width: 100,
+                flexBasis: 100, // width or height
+                flexGrow: 1, // same result as flex 1
+                // width: 100,
                 height: 100
             }}/>
             <View style={{

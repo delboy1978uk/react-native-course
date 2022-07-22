@@ -19,7 +19,8 @@ export default function App() {
                     width: 10,
                     height: 10,
                 },
-                shadowOpacity: 1
+                shadowOpacity: 1,
+                elevation: 20,
             }}>
 
             </View>

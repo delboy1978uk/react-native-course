@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, StyleSheet, Platform} from "react-native";
+import {Text, StyleSheet} from "react-native";
 
 function AppText({children}) {
     return (
@@ -15,7 +15,9 @@ const styles = StyleSheet.create({
         textDecorationLine: "underline",
         textAlign: "center",
         lineHeight: 50,
-        color: "tomato"
+        color: "tomato",
+        fontSize: 18,
+        fortFamily: "Roboto",
     }
 })
 

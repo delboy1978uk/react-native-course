@@ -1,22 +1,22 @@
 import {Platform, StyleSheet} from "react-native";
 
+import colors from '../../config/colors'
+
 const styles = StyleSheet.create({
     text: {
-        fontStyle: "italic",
         fontWeight: "600",
-        textTransform: "capitalize",
-        textDecorationLine: "underline",
+        textTransform: "uppercase",
         textAlign: "center",
         lineHeight: 50,
-        color: "tomato",
+        color: colors.white,
         ...Platform.select({
             ios: {
                 fontSize: 20,
-                fortFamily: "Avenir",
+                fontFamily: "Avenir",
             },
             android: {
                 fontSize: 18,
-                fortFamily: "Robooto",
+                fontFamily: "Robooto",
             },
         })
     }

@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
             },
             android: {
                 fontSize: 18,
-                fontFamily: "Robooto",
+                fontFamily: "Roboto",
             },
         })
     }

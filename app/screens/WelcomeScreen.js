@@ -23,13 +23,6 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
-    loginButton: {
-        width: '100%',
-        height: 70,
-        backgroundColor: '#fc5c65',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
     logo: {
         width: 100,
         height: 100

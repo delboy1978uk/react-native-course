@@ -5,10 +5,7 @@ import colors from '../../config/colors'
 const styles = StyleSheet.create({
     text: {
         fontWeight: "600",
-        textTransform: "uppercase",
-        textAlign: "center",
-        lineHeight: 50,
-        color: colors.white,
+        color: colors.black,
         ...Platform.select({
             ios: {
                 fontSize: 20,

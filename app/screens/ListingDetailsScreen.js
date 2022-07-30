@@ -1,9 +1,8 @@
 import React from 'react';
 import {Image, StyleSheet, View} from "react-native";
 
-import AppText from '../components/AppText'
 import colors from '../config/colors'
-
+import AppText from '../components/AppText'
 import ListItem from '../components/ListItem'
 
 function ListingDetailsScreen(props) {
@@ -16,7 +15,9 @@ function ListingDetailsScreen(props) {
                 <View style={styles.userContainer}>
                     <ListItem
                         image={require('../assets/gretl.png')}
-                        title="Gretl Michielsen" subtitle="5 listings"/>
+                        title="Gretl Michielsen"
+                        subtitle="5 listings"
+                    />
                 </View>
             </View>
         </View>

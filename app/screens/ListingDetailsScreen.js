@@ -9,10 +9,10 @@ import ListItem from '../components/ListItem'
 function ListingDetailsScreen(props) {
     return (
         <View>
-            <Image style={styles.image} source={require('../assets/bunny.jpg')} />
+            <Image style={styles.image} source={require('../assets/jacket.jpg')} />
             <View style={styles.detailsContainer}>
-                <AppText style={styles.title}>Hot honey bunny   ♾💎🧹</AppText>
-                <AppText style={styles.price}>£1,000,000,000</AppText>
+                <AppText style={styles.title}>Red Jacket</AppText>
+                <AppText style={styles.price}>£35</AppText>
                 <View style={styles.userContainer}>
                     <ListItem
                         image={require('../assets/gretl.png')}

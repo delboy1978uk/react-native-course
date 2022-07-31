@@ -44,6 +44,7 @@ const initialMessages = [
 
 function MessagesScreen() {
     const [messages, setMessages] = useState(initialMessages);
+    const [refreshing, setRefreshing] = useState(false);
     const handleDelete = message => {
         // delete call to server, then upon success:
         setMessages(messages.filter(m => m.id !== message.id));
@@ -63,6 +64,8 @@ function MessagesScreen() {
                 keyExtractor={item => item.id.toString()}
                 renderItem={renderItem}
                 ItemSeparatorComponent={() => <ListItemSeparator />}
+                refreshing={refreshing}
+                onRefresh={() => setMessages(initialMessages)}
             />
         </Screen>
     );

@@ -1,8 +1,9 @@
 import React from 'react';
-import {FlatList, StyleSheet} from "react-native";
+import {FlatList, StyleSheet, Text, View} from "react-native";
 import Constants from 'expo-constants'
 
 import ListItem from '../components/ListItem';
+import ListItemSeparator from '../components/ListItemSeparator';
 import Screen from '../components/Screen';
 
 const messages = [
@@ -20,17 +21,17 @@ const messages = [
     },
 ];
 
-const renderItem = ({item}) => (
-    <ListItem title={item.title} subtitle={item.description} image={item.image} />
-);
+const renderItem = ({item}) => <ListItem title={item.title} subtitle={item.description} image={item.image} /> ;
+const separator = () => <ListItemSeparator /> ;
 
-function MessagesScreen(props) {
+function MessagesScreen() {
     return (
         <Screen>
             <FlatList
                 data={messages}
                 keyExtractor={item => item.id.toString()}
                 renderItem={renderItem}
+                ItemSeparatorComponent={separator}
             />
         </Screen>
     );

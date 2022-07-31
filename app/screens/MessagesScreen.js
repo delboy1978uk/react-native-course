@@ -26,6 +26,18 @@ const initialMessages = [
         description: 'Teddy',
         image: require('../assets/teddy.png'),
     },
+    {
+        id: 4,
+        title: 'Teddicus Minimus',
+        description: 'Django',
+        image: require('../assets/django.png'),
+    },
+    {
+        id: 5,
+        title: 'Bonny Moo',
+        description: 'The Hieland Coo',
+        image: require('../assets/moo.png'),
+    },
 ];
 
 

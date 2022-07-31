@@ -1,18 +1,20 @@
 import React from 'react';
-import {Image, StyleSheet, View} from "react-native";
+import {Image, StyleSheet, TouchableHighlight, View} from "react-native";
 
 import AppText from '../components/AppText'
 import colors from '../config/colors'
 
-function ListItem({title, subtitle, image}) {
+function ListItem({title, subtitle, image, onPress}) {
     return (
-        <View style={styles.container}>
-            <Image style={styles.image} source={image}></Image>
-            <View>
-                <AppText style={styles.title}>{title}</AppText>
-                <AppText style={styles.subtitle}>{subtitle}</AppText>
+        <TouchableHighlight underlayColor={colors.light} onPress={onPress} >
+            <View style={styles.container}>
+                <Image style={styles.image} source={image}></Image>
+                <View>
+                    <AppText style={styles.title}>{title}</AppText>
+                    <AppText style={styles.subtitle}>{subtitle}</AppText>
+                </View>
             </View>
-        </View>
+        </TouchableHighlight>
     );
 }
 

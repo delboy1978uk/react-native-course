@@ -21,7 +21,8 @@ const messages = [
     },
 ];
 
-const renderItem = ({item}) => <ListItem title={item.title} subtitle={item.description} image={item.image} /> ;
+const onPress = () => alert('xxxxx');
+const renderItem = ({item}) => <ListItem title={item.title} subtitle={item.description} image={item.image} onPress={onPress}/> ;
 const separator = () => <ListItemSeparator /> ;
 
 function MessagesScreen() {

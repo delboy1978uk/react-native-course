@@ -1,0 +1,19 @@
+import React from 'react';
+import {Text, StyleSheet} from "react-native";
+
+import defaultStyles from '../config/styles'
+import colors from "../config/colors";
+
+function AppText({children, style}) {
+    return (
+        <Text style={[defaultStyles.text, styles.text, style]}>{children}</Text>
+    )
+}
+
+const styles = StyleSheet.create({
+    text: {
+        fontWeight: "600",
+    }
+})
+
+export default AppText;

@@ -1,11 +1,10 @@
-import {Platform, StyleSheet} from "react-native";
 
-import colors from '../../config/colors'
+import colors from "./colors";
+import {Platform} from "react-native";
 
-const styles = StyleSheet.create({
+export default {
     text: {
-        fontWeight: "600",
-        color: colors.black,
+        color: colors.dark,
         ...Platform.select({
             ios: {
                 fontSize: 20,
@@ -17,6 +16,5 @@ const styles = StyleSheet.create({
             },
         })
     }
-});
 
-export default styles;
+}

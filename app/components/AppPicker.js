@@ -1,15 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Modal, StyleSheet, TextInput, TouchableWithoutFeedback, View} from "react-native";
 import {MaterialCommunityIcons} from "@expo/vector-icons";
 
+import AppButton from './AppButton'
 import AppText from './AppText'
+import Screen from './Screen'
 import colors from '../config/colors'
 import styles from '../config/styles'
 
 function AppPicker({ icon, placeholder, ...otherProps }) {
+    const [modalVisible, setModalVisible] = useState(false);
+
     return (
         <>
-            <TouchableWithoutFeedback onPress={null}>
+            <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
                 <View style={style.container}>
                     {icon && <MaterialCommunityIcons name={icon} size={25} color={colors.medium} style={style.icon} />}
                     <AppText style={[styles.text, style.text]} {...otherProps}>
@@ -18,7 +22,11 @@ function AppPicker({ icon, placeholder, ...otherProps }) {
                     <MaterialCommunityIcons name="chevron-down" size={25} color={colors.medium} />
                 </View>
             </TouchableWithoutFeedback>
-            <Modal visible={false}></Modal>
+            <Modal visible={modalVisible} animationType="slide">
+                <Screen>
+                    <AppButton title="Close" onPress={() => setModalVisible(false)}/>
+                </Screen>
+            </Modal>
         </>
     );
 }
@@ -37,6 +45,15 @@ const style = StyleSheet.create({
     },
     text: {
         flex: 1
+    },
+    modal: {
+        flex: 1,
+        backgroundColor: 'cyan',
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center",
+        textAlignVertical: "center",
+        fontSize: 40
     }
 })
 

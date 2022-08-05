@@ -8,7 +8,7 @@ import styles from '../config/styles'
 
 function AppPicker({ icon, placeholder, ...otherProps }) {
     return (
-        <React.Fragment>
+        <>
             <TouchableWithoutFeedback onPress={null}>
                 <View style={style.container}>
                     {icon && <MaterialCommunityIcons name={icon} size={25} color={colors.medium} style={style.icon} />}
@@ -19,7 +19,7 @@ function AppPicker({ icon, placeholder, ...otherProps }) {
                 </View>
             </TouchableWithoutFeedback>
             <Modal visible={false}></Modal>
-        </React.Fragment>
+        </>
     );
 }
 

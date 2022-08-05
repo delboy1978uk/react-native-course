@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, TextInput, View} from "react-native";
+import {Modal, StyleSheet, TextInput, TouchableWithoutFeedback, View} from "react-native";
 import {MaterialCommunityIcons} from "@expo/vector-icons";
 
 import AppText from './AppText'
@@ -8,13 +8,18 @@ import styles from '../config/styles'
 
 function AppPicker({ icon, placeholder, ...otherProps }) {
     return (
-        <View style={style.container}>
-            {icon && <MaterialCommunityIcons name={icon} size={25} color={colors.medium} style={style.icon} />}
-            <AppText style={[styles.text, style.text]} {...otherProps}>
-                { placeholder }
-            </AppText>
-            <MaterialCommunityIcons name="chevron-down" size={25} color={colors.medium} />
-        </View>
+        <React.Fragment>
+            <TouchableWithoutFeedback onPress={null}>
+                <View style={style.container}>
+                    {icon && <MaterialCommunityIcons name={icon} size={25} color={colors.medium} style={style.icon} />}
+                    <AppText style={[styles.text, style.text]} {...otherProps}>
+                        { placeholder }
+                    </AppText>
+                    <MaterialCommunityIcons name="chevron-down" size={25} color={colors.medium} />
+                </View>
+            </TouchableWithoutFeedback>
+            <Modal visible={false}></Modal>
+        </React.Fragment>
     );
 }
 

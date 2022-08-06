@@ -4,10 +4,14 @@ import {View, StyleSheet, Text, Platform, TouchableOpacity, TouchableHighlight} 
 import AppText from '../components/AppText'
 import colors from '../config/colors'
 
-function AppButton({title, onPress, color}) {
+function AppButton({title, onPress, color, textColor}) {
     return (
-        <TouchableHighlight style={[styles.roundbutton, {backgroundColor: colors[color]}]} onPress={onPress}>
-            <AppText>{title}</AppText>
+        <TouchableHighlight style={[styles.roundbutton, {
+            backgroundColor: color ? colors[color]: styles.roundbutton.color,
+        }]} onPress={onPress}>
+            <AppText style={[styles.text, {
+                color: textColor ? colors[textColor] : styles.text.color}]
+            }>{title}</AppText>
         </TouchableHighlight>
     );
 }
@@ -20,7 +24,8 @@ const styles = StyleSheet.create({
         backgroundColor: colors.primary,
         justifyContent: 'center',
         alignItems: 'center',
-        marginVertical: 10
+        marginVertical: 10,
+        color: colors.black
     },
     text: {
         fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Courier',

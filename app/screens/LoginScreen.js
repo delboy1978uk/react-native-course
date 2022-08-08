@@ -3,9 +3,10 @@ import {Image, StyleSheet, View} from "react-native";
 import {Formik} from 'formik'
 import * as Yup from 'yup'
 
-import AppText from '../components/AppText'
-import AppTextInput from '../components/AppTextInput'
 import AppButton from '../components/AppButton'
+import AppText from '../components/AppText'
+import AppFormField from '../components/AppFormField'
+import ErrorMessage from '../components/ErrorMessage'
 import Screen from '../components/Screen'
 
 const validationSchema = Yup.object().shape({
@@ -23,29 +24,24 @@ function LoginScreen(props) {
                 onSubmit={values => console.log(values)}
                 validationSchema={validationSchema}
             >
-                {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
+                {({ handleChange, handleSubmit, values, errors, setFieldTouched, touched }) => (
                     <View>
-                        <AppTextInput
+                        <AppFormField
+                            name="email"
                             icon="email"
                             autoCapitalize="none"
                             keyboardType="email-address"
-                            onChangeText={handleChange('email')}
-                            onBlur={handleBlur('email')}
-                            value={values.email}
+                            textContentType="emailAddress"
                         />
-                        <AppText style={styles.error}>{errors.email}</AppText>
-                        <AppTextInput
+                        <AppFormField
+                            name="password"
                             autoCaptitalize="none"
                             autoCorrect={false}
                             icon="lock"
                             placeholder="Password"
                             secureTextEntry
                             textContentType="password"
-                            onChangeText={handleChange('password')}
-                            onBlur={handleBlur('password')}
-                            value={values.password}
                         />
-                        <AppText style={styles.error}>{errors.password}</AppText>
                         <AppButton color="primary" title="Login" onPress={handleSubmit}/>
                     </View>
                 )}
@@ -64,9 +60,6 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         marginTop: 50,
         marginBottom: 20,
-    },
-    error: {
-        color: 'tomato'
     }
 })
 

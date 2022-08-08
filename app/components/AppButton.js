@@ -3,6 +3,7 @@ import {View, StyleSheet, Text, Platform, TouchableOpacity, TouchableHighlight} 
 
 import AppText from '../components/AppText'
 import colors from '../config/colors'
+import defaultStyles from '../config/styles'
 
 function AppButton({title, onPress, color, textColor}) {
     return (
@@ -28,7 +29,7 @@ const styles = StyleSheet.create({
         color: colors.black
     },
     text: {
-        fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Courier',
+        fontFamily: defaultStyles.text.fontFamily,
         color: colors.white,
         fontSize: 18,
         textTransform: 'uppercase',

@@ -23,12 +23,12 @@ function AppPicker({ icon, items, onSelectItem, placeholder, selectedItem }) {
                     <MaterialCommunityIcons name="chevron-down" size={25} color={colors.medium} />
                 </View>
             </TouchableWithoutFeedback>
-            <Modal visible={modalVisible} animationType="slide">
-                <Screen>
+            <Modal visible={modalVisible}  animationType="slide">
+                <Screen style={style.modal}>
                     <AppButton title="Close" onPress={() => setModalVisible(false)}/>
                     <FlatList
                         data={items}
-                        keyExtractor={item => item.value.toString()}
+                        keyExtractor={item => item.value}
                         renderItem={({item}) =>
                             <PickerItem
                                 label={item.label}
@@ -61,12 +61,7 @@ const style = StyleSheet.create({
     },
     modal: {
         flex: 1,
-        backgroundColor: 'cyan',
-        justifyContent: "center",
-        alignItems: "center",
-        textAlign: "center",
-        textAlignVertical: "center",
-        fontSize: 40
+        padding: 15
     }
 })
 

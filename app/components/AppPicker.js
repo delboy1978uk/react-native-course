@@ -6,8 +6,7 @@ import AppButton from './AppButton'
 import AppText from './AppText'
 import PickerItem from './PickerItem'
 import Screen from './Screen'
-import colors from '../config/colors'
-import styles from '../config/styles'
+import defaultStyles from '../config/styles'
 
 function AppPicker({ icon, items, onSelectItem, placeholder, selectedItem }) {
     const [modalVisible, setModalVisible] = useState(false);
@@ -16,11 +15,11 @@ function AppPicker({ icon, items, onSelectItem, placeholder, selectedItem }) {
         <>
             <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
                 <View style={style.container}>
-                    {icon && <MaterialCommunityIcons name={icon} size={25} color={colors.medium} style={style.icon} />}
-                    <AppText style={[styles.text, style.text]}>
+                    {icon && <MaterialCommunityIcons name={icon} size={25} color={defaultStyles.colors.medium} style={style.icon} />}
+                    <AppText style={selectedItem ? [defaultStyles.text, style.text] : [defaultStyles.text, style.placeholder] } >
                         { selectedItem ? selectedItem.label : placeholder }
                     </AppText>
-                    <MaterialCommunityIcons name="chevron-down" size={25} color={colors.medium} />
+                    <MaterialCommunityIcons name="chevron-down" size={25} color={defaultStyles.colors.medium} />
                 </View>
             </TouchableWithoutFeedback>
             <Modal visible={modalVisible}  animationType="slide">
@@ -46,7 +45,7 @@ function AppPicker({ icon, items, onSelectItem, placeholder, selectedItem }) {
 
 const style = StyleSheet.create({
     container: {
-        backgroundColor: colors.light,
+        backgroundColor: defaultStyles.colors.light,
         borderRadius: 25,
         flexDirection: 'row',
         width: '100%',
@@ -56,12 +55,16 @@ const style = StyleSheet.create({
     icon: {
         marginRight: 10
     },
-    text: {
-        flex: 1
-    },
     modal: {
         flex: 1,
         padding: 15
+    },
+    placeholder: {
+        flex: 1,
+        color: defaultStyles.colors.medium
+    },
+    text: {
+        flex: 1
     }
 })
 

@@ -15,6 +15,7 @@ export default {
                 fontFamily: "Roboto",
             },
         })
-    }
+    },
+    colors: colors
 
 }

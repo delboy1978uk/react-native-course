@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {StyleSheet, Switch, Text, TextInput, View} from "react-native";
 
-import ListingEditScreen from './app/screens/ListingEditScreen';
+import MessagesScreen from './app/screens/MessagesScreen';
 
 export default function App() {
     return (
-        <ListingEditScreen />
+        <MessagesScreen />
     )
 }

@@ -55,6 +55,7 @@ function MessagesScreen() {
                   image={item.image}
                   onPress={() => alert('wtf')}
                   renderRightActions={() => (<ListItemDeleteAction onPress={() => handleDelete(item)}/>)}
+                  displayCheverons={true}
         /> ;
 
     return (

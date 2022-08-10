@@ -8,13 +8,20 @@ import PickerItem from './PickerItem'
 import Screen from './Screen'
 import defaultStyles from '../config/styles'
 
-function AppPicker({ icon, items, onSelectItem, placeholder, selectedItem }) {
+function AppPicker({
+   icon,
+   items,
+   onSelectItem,
+   placeholder,
+   selectedItem,
+   width = '100%'
+}) {
     const [modalVisible, setModalVisible] = useState(false);
 
     return (
-        <>
+        <View>
             <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
-                <View style={style.container}>
+                <View style={[style.container, {width: width}]}>
                     {icon && <MaterialCommunityIcons name={icon} size={25} color={defaultStyles.colors.medium} style={style.icon} />}
                     <AppText style={selectedItem ? [defaultStyles.text, style.text] : [defaultStyles.text, style.placeholder] } >
                         { selectedItem ? selectedItem.label : placeholder }
@@ -22,6 +29,7 @@ function AppPicker({ icon, items, onSelectItem, placeholder, selectedItem }) {
                     <MaterialCommunityIcons name="chevron-down" size={25} color={defaultStyles.colors.medium} />
                 </View>
             </TouchableWithoutFeedback>
+
             <Modal visible={modalVisible}  animationType="slide">
                 <Screen style={style.modal}>
                     <AppButton title="Close" onPress={() => setModalVisible(false)}/>
@@ -39,7 +47,7 @@ function AppPicker({ icon, items, onSelectItem, placeholder, selectedItem }) {
                     } />
                 </Screen>
             </Modal>
-        </>
+        </View>
     );
 }
 

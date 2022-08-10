@@ -51,11 +51,13 @@ function ListingEditScreen(props) {
                     placeholder="Price"
                     keyboardType="decimal-pad"
                     maxLength={8}
+                    width={120}
                 />
                 <AppFormPicker
                     items={categories}
                     name="category"
                     placeholder="Category"
+                    width={300}
                 />
                 <AppFormField
                     name="description"

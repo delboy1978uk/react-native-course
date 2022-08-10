@@ -5,7 +5,7 @@ import {View} from "react-native";
 import AppTextInput from "../AppTextInput";
 import ErrorMessage from "./ErrorMessage";
 
-function AppFormField({name, ...otherProps}) {
+function AppFormField({name, width,  ...otherProps}) {
     const {setFieldTouched, handleChange, errors, values, touched} = useFormikContext()
 
     return (
@@ -14,6 +14,7 @@ function AppFormField({name, ...otherProps}) {
                 onChangeText={handleChange(name)}
                 onBlur={() => setFieldTouched(name)}
                 value={values[name]}
+                width={width}
                 {...otherProps}
             />
             <ErrorMessage error={errors[name]} visible={touched[name]}/>

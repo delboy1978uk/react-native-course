@@ -2,6 +2,8 @@ import React from 'react';
 import {StyleSheet} from "react-native";
 import * as Yup from "yup";
 
+import CategoryPickerItem from '../components/CategoryPickerItem'
+import PickerItem from '../components/PickerItem'
 import Screen from '../components/Screen'
 import {
     AppForm,
@@ -22,9 +24,18 @@ const validationSchema = Yup.object().shape({
 });
 
 const categories = [
-    { label: "Furniture", value: 1 },
-    { label: "Clothing", value: 2 },
-    { label: "Cameras", value: 3 },
+    { label: "Books", value: 1, backgroundColor: 'pink', icon: 'book-open-page-variant'  },
+    { label: "Cameras", value: 2, backgroundColor: 'turquoise', icon: 'camera'  },
+    { label: "Cars", value: 3, backgroundColor: 'dodgerblue', icon: 'car'  },
+    { label: "Clothing", value: 4, backgroundColor: 'darkblue',  icon: 'shoe-heel'},
+    { label: "Electrical", value: 5, backgroundColor: 'red', icon: 'laptop'  },
+    { label: "Furniture", value: 6, backgroundColor: 'tomato', icon: 'lamp' },
+    { label: "Games", value: 7, backgroundColor: 'darkturquoise', icon: 'cards'  },
+    { label: "Movies", value: 8, backgroundColor: 'purple', icon: 'movie-open-outline'  },
+    { label: "Music", value: 9, backgroundColor: 'orange', icon: 'headphones'  },
+    { label: "Sports", value: 10, backgroundColor: 'green', icon: 'basketball'  },
+    { label: "Tools", value: 11, backgroundColor: 'lightblue', icon: 'wrench'  },
+    { label: "Other", value: 12, backgroundColor: 'green', icon: 'apps'  },
 ];
 
 
@@ -56,6 +67,8 @@ function ListingEditScreen(props) {
                 <AppFormPicker
                     items={categories}
                     name="category"
+                    numColumns={3}
+                    PickerItemComponent={CategoryPickerItem}
                     placeholder="Category"
                     width={300}
                 />

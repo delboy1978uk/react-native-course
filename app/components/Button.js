@@ -1,18 +1,18 @@
 import React from 'react';
-import {View, StyleSheet, Text, Platform, TouchableOpacity, TouchableHighlight} from "react-native";
+import {View, StyleSheet, Platform, TouchableOpacity, TouchableHighlight} from "react-native";
 
-import AppText from '../components/AppText'
+import Text from '../components/Text'
 import colors from '../config/colors'
 import defaultStyles from '../config/styles'
 
-function AppButton({title, onPress, color, textColor}) {
+function Button({title, onPress, color, textColor}) {
     return (
         <TouchableHighlight style={[styles.roundbutton, {
             backgroundColor: color ? colors[color]: styles.roundbutton.color,
         }]} onPress={onPress}>
-            <AppText style={[styles.text, {
+            <Text style={[styles.text, {
                 color: textColor ? colors[textColor] : styles.text.color}]
-            }>{title}</AppText>
+            }>{title}</Text>
         </TouchableHighlight>
     );
 }
@@ -37,4 +37,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default AppButton;
+export default Button;

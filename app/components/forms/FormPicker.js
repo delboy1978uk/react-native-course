@@ -1,17 +1,17 @@
 import React from 'react';
 import {View} from "react-native";
 
-import AppPicker from '../AppPicker'
+import Picker from '../Picker'
 import PickerItemComponent from '../PickerItemComponent'
 import ErrorMessage from "./ErrorMessage";
 import {useFormikContext} from "formik";
 
-function AppFormPicker({items, name, PickerItemComponent, placeholder, width, numColumns, ...otherProps}) {
+function FormPicker({items, name, PickerItemComponent, placeholder, width, numColumns, ...otherProps}) {
     const {setFieldValue, touched, values, errors} = useFormikContext()
 
     return (
         <View>
-            <AppPicker
+            <Picker
                 items={items}
                 numColumns={numColumns}
                 onSelectItem={(value) => {
@@ -28,4 +28,4 @@ function AppFormPicker({items, name, PickerItemComponent, placeholder, width, nu
     );
 }
 
-export default AppFormPicker;
+export default FormPicker;

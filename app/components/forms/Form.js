@@ -2,7 +2,7 @@ import React from 'react';
 import {Formik} from "formik";
 import {View} from "react-native";
 
-function AppForm({initialValues, onSubmit, validationSchema, children}) {
+function Form({initialValues, onSubmit, validationSchema, children}) {
     return (
         <Formik
             initialValues={initialValues}
@@ -18,4 +18,4 @@ function AppForm({initialValues, onSubmit, validationSchema, children}) {
     );
 }
 
-export default AppForm;
+export default Form;

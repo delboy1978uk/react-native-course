@@ -2,13 +2,14 @@ import React from 'react';
 import {View, StyleSheet} from "react-native";
 import {MaterialCommunityIcons} from "@expo/vector-icons";
 
-function Icon({name, size = 40, backgroundColor = 'black', iconColor = 'white'}) {
+function Icon({name, size = 40, backgroundColor, borderRadius , iconColor = 'white'}) {
+    borderRadius = borderRadius ? borderRadius : size /2;
 
     const styles = StyleSheet.create({
         icon: {
             width: size,
             height: size,
-            borderRadius: size / 2,
+            borderRadius: borderRadius,
             backgroundColor: backgroundColor,
             justifyContent: "center",
             alignItems: "center"

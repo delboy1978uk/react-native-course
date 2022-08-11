@@ -1,42 +1,32 @@
 import React, {useEffect, useState} from 'react';
 import {Image, StyleSheet, Switch, TextInput, View} from "react-native";
-import * as ImagePicker from 'expo-image-picker';
 
-import Button from './app/components/Button'
-import Screen from './app/components/Screen'
-import Text from './app/components/Text'
+import ImageInput from './app/components/ImageInput';
+import Screen from './app/components/Screen';
 
 export default function App() {
-    const [imageUri, setImageUri] = useState()
-
-    const requestPermission = async () => {
-        const {granted} = await ImagePicker.requestMediaLibraryPermissionsAsync();
-
-        if (!granted) {
-            alert('What?! No! You need to click on allow always!');
-        }
-    }
-
-    useEffect(() => {
-        requestPermission();
-    }, []);
-
-    const selectImage = async () => {
-        try {
-            const result = await ImagePicker.launchImageLibraryAsync();
-
-            if (!result.cancelled) {
-                setImageUri(result.uri);
-            }
-        } catch (error) {
-            alert('Error reading image');
-        }
-    };
+    const [imageUri, setImageUri] = useState();
 
     return (
-        <Screen>
-            <Button title="Select Image" onPress={selectImage} />
-            <Image source={{uri:imageUri }} style={{width: 200, height: 200}} />
+        <Screen style={styles.container}>
+            {imageUri && <Image source={imageUri} style={styles.image}/>}
+            <ImageInput imageUri={imageUri} onChangeImage={ (uri) => {
+                setImageUri(uri);
+            } } />
         </Screen>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        padding:10,
+        flex: 1,
+        flexDirection: 'row',
+    },
+    image: {
+        width: 100,
+        height: 100,
+        borderRadius: 15,
+        marginHorizontal: 5
+    },
+})

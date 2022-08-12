@@ -2,16 +2,18 @@ import React, {useEffect, useState} from 'react';
 import {Image, StyleSheet, Switch, TextInput, View} from "react-native";
 
 import ImageInput from './app/components/ImageInput';
+import ImageInputList from './app/components/ImageInputList';
 import Screen from './app/components/Screen';
 
 export default function App() {
-    const [imageUri, setImageUri] = useState();
+    const [images, setImages] = useState([]);
+    const [image, setImage] = useState(null);
 
     return (
         <Screen style={styles.container}>
-            {imageUri && <Image source={imageUri} style={styles.image}/>}
-            <ImageInput imageUri={imageUri} onChangeImage={ (uri) => {
-                setImageUri(uri);
+            <ImageInput onChangeImage={(uri) => setImage(uri)} imageUri={image}/>
+            <ImageInputList numColumns={3} imageUris={images} onChangeImage={ (uri) => {
+                setImages([images, uri])
             } } />
         </Screen>
     )
@@ -20,12 +22,6 @@ export default function App() {
 const styles = StyleSheet.create({
     container: {
         padding:10,
-        flexDirection: 'row',
     },
-    image: {
-        width: 100,
-        height: 100,
-        borderRadius: 15,
-        marginHorizontal: 5
-    },
+
 })

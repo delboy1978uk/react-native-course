@@ -9,12 +9,17 @@ export default function App() {
     const [images, setImages] = useState([]);
     const [image, setImage] = useState(null);
 
+    const handleAdd = uri => setImages([...images, uri]);
+    const handleRemove = uri => setImages(images.filter(imageUri => imageUri !== uri));
+
     return (
         <Screen style={styles.container}>
-            <ImageInput onChangeImage={(uri) => setImage(uri)} imageUri={image}/>
-            <ImageInputList numColumns={3} imageUris={images} onChangeImage={ (uri) => {
-                setImages([images, uri])
-            } } />
+            <ImageInput onChangeImage={(uri) => setImage(uri)} imageUri={image} />
+            <ImageInputList
+                imageUris={images}
+                onAddImage={ handleAdd }
+                onRemoveImage={ handleRemove }
+            />
         </Screen>
     )
 }

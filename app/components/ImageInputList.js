@@ -1,16 +1,21 @@
-import React from 'react';
-import {FlatList, Image, StyleSheet, TouchableWithoutFeedback, View} from "react-native";
+import React, {useRef} from 'react';
+import {FlatList, Image, ScrollView, StyleSheet, TouchableWithoutFeedback, View} from "react-native";
 import ImageInput from "./ImageInput";
 
 function ImageInputList({imageUris = [], onAddImage, onRemoveImage}) {
+    const scrollView = useRef();
 
-    return <View style={styles.container}>
-        { imageUris.map( uri => (
-            <View key={uri} style={styles.image}>
-                <ImageInput imageUri={uri} onChangeImage={ () => onRemoveImage(uri)} />
+    return <View>
+        <ScrollView ref={scrollView} horizontal onContentSizeChange={ () => scrollView.current.scrollToEnd() } >
+            <View style={styles.container}>
+                { imageUris.map( uri => (
+                    <View key={uri} style={styles.image}>
+                        <ImageInput imageUri={uri} onChangeImage={ () => onRemoveImage(uri)} />
+                    </View>
+                )) }
+                <ImageInput onChangeImage={ uri => onAddImage(uri) } />
             </View>
-        )) }
-        <ImageInput onChangeImage={ uri => onAddImage(uri) } />
+        </ScrollView>
     </View>;
 }
 

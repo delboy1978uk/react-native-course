@@ -1,16 +1,36 @@
 import React, {useEffect, useState} from 'react';
-import {Image, StyleSheet, Switch, TextInput, View} from "react-native";
+import {StyleSheet} from "react-native";
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
 
-import ListingEditScreen from './app/screens/ListingEditScreen';
+import Screen from './app/components/Screen';
+import Text from "./app/components/Text";
 
 export default function App() {
-    const [images, setImages] = useState([]);
+    const Tweets = () => (
+        <Screen>
+            <Text>Tweets</Text>
+        </Screen>
+    );
 
-    const handleAdd = uri => setImages([...images, uri]);
-    const handleRemove = uri => setImages(images.filter(imageUri => imageUri !== uri));
+    const TweetDetails = () => (
+        <Screen>
+            <Text>~Details</Text>
+        </Screen>
+    );
+
+    const Stack = createStackNavigator();
+    const StackNavigator = () => (
+        <Stack.Navigator initialRouteName={'Tweets'} >
+            <Stack.Screen name={'Details'} component={TweetDetails} />
+            <Stack.Screen name={'Tweets'} component={Tweets} />
+        </Stack.Navigator>
+    )
 
     return (
-        <ListingEditScreen />
+        <NavigationContainer>
+            <StackNavigator />
+        </NavigationContainer>
     )
 }
 

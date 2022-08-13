@@ -1,13 +1,21 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet} from "react-native";
 import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
+import {NavigationContainer, useNavigation} from '@react-navigation/native';
 
 import Screen from './app/components/Screen';
 import Text from "./app/components/Text";
 import Button from "./app/components/Button";
 
 export default function App() {
+
+    const Link = () => {
+        const navigation = useNavigation();
+
+        return (
+            <Button title={'click'} onPress={() => navigation.navigate('TweetDetails')} />
+        );
+    };
 
     const TweetDetails = () => (
         <Screen>
@@ -18,10 +26,7 @@ export default function App() {
     const Tweets = ({ navigation }) => (
         <Screen>
             <Text>Tweets</Text>
-            <Button
-                title={'View Tweet'}
-                onPress={() => navigation.navigate('TweetDetails')}
-            />
+            <Link />
         </Screen>
     );
 

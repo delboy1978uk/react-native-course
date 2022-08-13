@@ -1,11 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet} from "react-native";
 import * as Yup from "yup";
-import * as Location from 'expo-location'
 
 import CategoryPickerItem from '../components/CategoryPickerItem'
 import useLocation from '../hooks/useLocation'
-import PickerItem from '../components/PickerItem'
 import Screen from '../components/Screen'
 import {
     Form,

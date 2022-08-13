@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import * as Location from 'expo-location'
 
 import CategoryPickerItem from '../components/CategoryPickerItem'
+import useLocation from '../hooks/useLocation'
 import PickerItem from '../components/PickerItem'
 import Screen from '../components/Screen'
 import {
@@ -43,23 +44,7 @@ const categories = [
 
 
 function ListingEditScreen(props) {
-    const [location, setLocation] = useState();
-
-    const getLocation = async () => {
-        const {granted} =  await Location.requestForegroundPermissionsAsync();
-
-        if (!granted) {
-            return;
-        }
-
-        const {coords: {longitude, latitude}} = await Location.getLastKnownPositionAsync();
-        setLocation({latitude, longitude})
-    }
-
-    useEffect(() => {
-        getLocation();
-
-    }, []);
+    const location = useLocation();
 
     return (
         <Screen style={styles.container}>

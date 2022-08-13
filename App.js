@@ -1,9 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Image, StyleSheet, Switch, TextInput, View} from "react-native";
 
-import * as Form from './app/components/forms';
-import ImageInputList from './app/components/ImageInputList';
-import Screen from './app/components/Screen';
+import ListingEditScreen from './app/screens/ListingEditScreen';
 
 export default function App() {
     const [images, setImages] = useState([]);
@@ -12,12 +10,7 @@ export default function App() {
     const handleRemove = uri => setImages(images.filter(imageUri => imageUri !== uri));
 
     return (
-        <Screen style={styles.container}>
-            <Form.Form initialValues={{ images: images }} >
-                <Form.FormImagePicker name={'images'} />
-            </Form.Form>
-
-        </Screen>
+        <ListingEditScreen />
     )
 }
 

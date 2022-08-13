@@ -7,7 +7,7 @@ import ErrorMessage from "./ErrorMessage";
 import {useFormikContext} from "formik";
 
 function FormPicker({items, name, PickerItemComponent, placeholder, width, numColumns, ...otherProps}) {
-    const {setFieldValue, touched, values, errors} = useFormikContext()
+    const {setFieldValue, touched, values, errors} = useFormikContext();
 
     return (
         <View>
@@ -16,7 +16,6 @@ function FormPicker({items, name, PickerItemComponent, placeholder, width, numCo
                 numColumns={numColumns}
                 onSelectItem={(value) => {
                     setFieldValue(name, value);
-                    console.log(name, value);
                 }}
                 PickerItemComponent={PickerItemComponent}
                 placeholder={placeholder}

@@ -13,13 +13,13 @@ export default function App() {
         const navigation = useNavigation();
 
         return (
-            <Button title={'click'} onPress={() => navigation.navigate('TweetDetails')} />
+            <Button title={'click'} onPress={() => navigation.navigate('TweetDetails', { id : 1 } )} />
         );
     };
 
-    const TweetDetails = () => (
+    const TweetDetails = ({ route }) => (
         <Screen>
-            <Text>~Details</Text>
+            <Text>~Details {route.params.id}</Text>
         </Screen>
     );
 

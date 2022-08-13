@@ -5,13 +5,9 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import Screen from './app/components/Screen';
 import Text from "./app/components/Text";
+import Button from "./app/components/Button";
 
 export default function App() {
-    const Tweets = () => (
-        <Screen>
-            <Text>Tweets</Text>
-        </Screen>
-    );
 
     const TweetDetails = () => (
         <Screen>
@@ -19,10 +15,20 @@ export default function App() {
         </Screen>
     );
 
+    const Tweets = ({ navigation }) => (
+        <Screen>
+            <Text>Tweets</Text>
+            <Button
+                title={'View Tweet'}
+                onPress={() => navigation.navigate('TweetDetails')}
+            />
+        </Screen>
+    );
+
     const Stack = createStackNavigator();
     const StackNavigator = () => (
         <Stack.Navigator initialRouteName={'Tweets'} >
-            <Stack.Screen name={'Details'} component={TweetDetails} />
+            <Stack.Screen name={'TweetDetails'} component={TweetDetails} />
             <Stack.Screen name={'Tweets'} component={Tweets} />
         </Stack.Navigator>
     )

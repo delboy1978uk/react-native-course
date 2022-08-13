@@ -37,7 +37,12 @@ export default function App() {
                 name={'TweetDetails'}
                 component={TweetDetails}
                 options={ ({route}) => ({
-                    title: route.params.id
+                    title: route.params.id,
+                    headerStyle: {
+                        backgroundColor: 'tomato',
+                    },
+                    headerTintColor: 'white',
+                    headerShown: true,
                 })}
             />
             <Stack.Screen name={'Tweets'} component={Tweets} />

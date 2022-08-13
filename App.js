@@ -33,7 +33,13 @@ export default function App() {
     const Stack = createStackNavigator();
     const StackNavigator = () => (
         <Stack.Navigator initialRouteName={'Tweets'} >
-            <Stack.Screen name={'TweetDetails'} component={TweetDetails} />
+            <Stack.Screen
+                name={'TweetDetails'}
+                component={TweetDetails}
+                options={ ({route}) => ({
+                    title: route.params.id
+                })}
+            />
             <Stack.Screen name={'Tweets'} component={Tweets} />
         </Stack.Navigator>
     )

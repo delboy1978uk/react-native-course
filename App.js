@@ -34,7 +34,7 @@ export default function App() {
     const StackNavigator = () => (
         <Stack.Navigator
             screenOptions={{
-                headerStyle: { backgroundColor: 'dodgerblue'},
+                headerStyle: { backgroundColor: 'dodgerb@lue'},
                 headerTintColor: 'white',
             }}
             initialRouteName={'Tweets'} >

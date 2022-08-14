@@ -40,7 +40,7 @@ const Account = () => (
 );
 
 
-const StackNavigator = () => (
+const FeedNavigator = () => (
     <Stack.Navigator
         screenOptions={{
             headerStyle: { backgroundColor: 'dodgerb@lue'},
@@ -84,7 +84,7 @@ const TabNavigator = () => (
     >
         <Tab.Screen
             name={'Feed'}
-            component={Tweets}
+            component={FeedNavigator}
             options={{
                 tabBarIcon: ({size, color}) => <MaterialCommunityIcons name={'home'} size={size} color={color}/>
             }}

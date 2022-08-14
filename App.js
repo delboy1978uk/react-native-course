@@ -1,12 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet} from "react-native";
 import { createStackNavigator } from '@react-navigation/stack';
-import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {NavigationContainer, useNavigation} from '@react-navigation/native';
 
 import Screen from './app/components/Screen';
 import Text from "./app/components/Text";
-import Button from "./app/components/Button";
+import Button from "./app/components/Button"
+import {MaterialCommunityIcons} from "@expo/vector-icons";
+
+const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
 const Link = () => {
     const navigation = useNavigation();
@@ -35,14 +39,15 @@ const Account = () => (
     </Screen>
 );
 
-const Stack = createStackNavigator();
+
 const StackNavigator = () => (
     <Stack.Navigator
         screenOptions={{
             headerStyle: { backgroundColor: 'dodgerb@lue'},
             headerTintColor: 'white',
         }}
-        initialRouteName={'Tweets'} >
+        initialRouteName={'Tweets'}
+    >
         <Stack.Screen
             name={'TweetDetails'}
             component={TweetDetails}
@@ -59,10 +64,28 @@ const StackNavigator = () => (
     </Stack.Navigator>
 )
 
-const Tab = createBottomTabNavigator();
 const TabNavigator = () => (
-    <Tab.Navigator>
-        <Tab.Screen name={'Feed'} component={Tweets} />
+    <Tab.Navigator
+        screenOptions={{
+            "tabBarActiveTintColor": "white",
+            "tabBarActiveBackgroundColor": "tomato",
+            "tabBarInactiveBackgroundColor": "#eee",
+            "tabBarInactiveTintColor": "black",
+            "tabBarStyle": [
+                {
+                    "display": "flex"
+                },
+                null
+            ]
+        }}
+    >
+        <Tab.Screen
+            name={'Feed'}
+            component={Tweets}
+            options={{
+                tabBarIcon: ({size, color}) => <MaterialCommunityIcons name={'home'} size={size} color={color}/>
+            }}
+        />
         <Tab.Screen name={'Account'} component={Account} />
     </Tab.Navigator>
 )

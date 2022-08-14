@@ -1,9 +1,12 @@
 import React from 'react';
 import {Image, ImageBackground, StyleSheet, Text, View} from "react-native";
+import {useNavigation} from "@react-navigation/native";
 
 import Button from '../components/Button'
 
 function WelcomeScreen(props) {
+    const navigation = useNavigation();
+
     return (
         <ImageBackground blurRadius={10} style={styles.background} source={require('../assets/background.jpg')} >
             <View style={styles.logoContainer}>
@@ -11,8 +14,8 @@ function WelcomeScreen(props) {
                 <Text style={styles.tagline}>Sell your shit</Text>
             </View>
             <View style={styles.buttonContainer}>
-                <Button title="login" color="primary" onPress={() => alert('login')}></Button>
-                <Button title="register" color="secondary" onPress={() => alert('register')}></Button>
+                <Button title="login" color="primary" onPress={() => navigation.navigate('LoginScreen')}></Button>
+                <Button title="register" color="secondary" onPress={() => navigation.navigate('RegisterScreen')}></Button>
             </View>
         </ImageBackground>
     );

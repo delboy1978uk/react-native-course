@@ -2,7 +2,7 @@ import React from 'react';
 
 import Card from '../components/Card'
 import Screen from '../components/Screen'
-import {FlatList, StyleSheet} from "react-native";
+import {FlatList, StyleSheet, TouchableWithoutFeedback} from "react-native";
 
 import colors from '../config/colors'
 
@@ -20,20 +20,21 @@ const listings = [
         image: require('../assets/couch.jpg')
     },
     {
-        id: 3,
-        title: 'Hot honey bunny ❤️',
-        price: '100,000,000',
-        image: require('../assets/bunny.jpg')
-    },
-    {
         id: 4,
         title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
         price: '100,000,000',
         image: require('../assets/chair.jpg')
     },
+    {
+        id: 3,
+        title: 'Hot honey bunny ❤️',
+        price: '100,000,000',
+        image: require('../assets/bunny.jpg')
+    },
 ];
 
-function ListingsScreen(props) {
+function ListingsScreen({navigation}) {
+
     return (
         <Screen style={styles.screen}>
             <FlatList
@@ -44,6 +45,7 @@ function ListingsScreen(props) {
                         title={item.title}
                         subtitle={"€" + item.price}
                         image={item.image}
+                        onPress={() => navigation.navigate('ListingDetails', item)}
                     />
                 }
             />

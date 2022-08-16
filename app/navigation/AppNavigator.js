@@ -3,13 +3,14 @@ import {StyleSheet, View} from "react-native";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {MaterialCommunityIcons} from "@expo/vector-icons";
 
-import ListingsScreen from "../../screens/ListingsScreen";
-import ListingEditScreen from "../../screens/ListingEditScreen";
-import AccountScreen from "../../screens/AccountScreen";
+import ListingsScreen from "../screens/ListingsScreen";
+import ListingEditScreen from "../screens/ListingEditScreen";
+import AccountScreen from "../screens/AccountScreen";
+import FeedNavigator from "../navigation/FeedNavigator";
 
 const Tab = createBottomTabNavigator();
 
-function HomeScreenNavigator(props) {
+function AppNavigator(props) {
     return (
         <Tab.Navigator
             screenOptions={{
@@ -29,10 +30,11 @@ function HomeScreenNavigator(props) {
             }}
         >
             <Tab.Screen
-                name={'Feed'}
-                component={ListingsScreen}
+                name={'Listings'}
+                component={FeedNavigator}
                 options={{
-                    tabBarIcon: ({size, color}) => <MaterialCommunityIcons name={'home'} size={size} color={color}/>
+                    tabBarIcon: ({size, color}) => <MaterialCommunityIcons name={'home'} size={size} color={color}/>,
+                    headerShown: false,
                 }}
             />
             <Tab.Screen
@@ -53,6 +55,4 @@ function HomeScreenNavigator(props) {
     )
 }
 
-
-
-export default HomeScreenNavigator;
+export default AppNavigator;

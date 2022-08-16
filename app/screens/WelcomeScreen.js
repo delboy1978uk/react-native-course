@@ -14,8 +14,8 @@ function WelcomeScreen(props) {
                 <Text style={styles.tagline}>Sell your shit</Text>
             </View>
             <View style={styles.buttonContainer}>
-                <Button title="login" color="primary" onPress={() => navigation.navigate('LoginScreen')}></Button>
-                <Button title="register" color="secondary" onPress={() => navigation.navigate('RegisterScreen')}></Button>
+                <Button title="login" color="primary" onPress={() => navigation.navigate('Login')}></Button>
+                <Button title="register" color="secondary" onPress={() => navigation.navigate('Register')}></Button>
             </View>
         </ImageBackground>
     );

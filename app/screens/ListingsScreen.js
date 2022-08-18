@@ -5,6 +5,7 @@ import Screen from '../components/Screen'
 import {FlatList, StyleSheet, TouchableWithoutFeedback} from "react-native";
 
 import colors from '../config/colors'
+import routes from '../navigation/routes'
 
 const listings = [
     {
@@ -45,7 +46,7 @@ function ListingsScreen({navigation}) {
                         title={item.title}
                         subtitle={"€" + item.price}
                         image={item.image}
-                        onPress={() => navigation.navigate('ListingDetails', item)}
+                        onPress={() => navigation.navigate(routes.LISTING_DETAILS, item)}
                     />
                 }
             />

@@ -9,6 +9,7 @@ import ListingsScreen from "../screens/ListingsScreen";
 import NewListingButton from "../navigation/NewListingButton";
 import FeedNavigator from "../navigation/FeedNavigator";
 import Icon from "../components/Icon";
+import routes from "../navigation/routes";
 
 const Tab = createBottomTabNavigator();
 

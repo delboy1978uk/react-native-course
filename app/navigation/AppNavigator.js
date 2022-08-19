@@ -49,7 +49,7 @@ function AppNavigator(props) {
                 }
             />
             <Tab.Screen
-                name={'Account'}
+                name={'Summary'}
                 component={AccountNavigator}
                 options={{
                     tabBarIcon: ({size, color}) => <MaterialCommunityIcons name={'account'} size={size} color={color}/>,

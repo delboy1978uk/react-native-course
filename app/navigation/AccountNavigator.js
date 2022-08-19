@@ -11,7 +11,7 @@ const Stack = createStackNavigator();
 function AccountNavigator(props) {
     return (
         <Stack.Navigator>
-            <Stack.Screen name={'Summary'} component={AccountScreen} />
+            <Stack.Screen name={'Account'} component={AccountScreen} />
             <Stack.Screen name={'Listings'} component={PlaceholderScreen} />
             <Stack.Screen name={'Messages'} component={MessagesScreen} />
             <Stack.Screen name={'Log Out'} component={WelcomeScreen} />

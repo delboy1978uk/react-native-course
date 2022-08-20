@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 
 import Card from '../components/Card'
 import Screen from '../components/Screen'
-import {FlatList, StyleSheet, TouchableWithoutFeedback, View} from "react-native";
+import {ActivityIndicator, FlatList, StyleSheet, TouchableWithoutFeedback, View} from "react-native";
 
 import listingsApi from '../api/listings'
 import colors from '../config/colors'
@@ -14,17 +14,22 @@ function ListingsScreen({navigation}) {
 
     const [error, setError] = useState(false);
     const [listings, setListings] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         loadListings();
     }, []);
 
     const loadListings = async () => {
+        console.log('about to load');
+        setLoading(true);
         const response = await listingsApi.getListings();
+        setLoading(false);
+        console.log('finished loading');
 
         if (!response.ok) {
             setError(true);
-
+            console.log(response.problem);
             return;
         }
 
@@ -40,6 +45,7 @@ function ListingsScreen({navigation}) {
                     <Button textColor={'white'} color={'primary'} title={'retry'} onPress={ loadListings }/>
                 </View>
             }
+            <ActivityIndicator animating={true} size={'large'} />
             <FlatList
                 data={listings}
                 keyExtractor={listing => listing.id}

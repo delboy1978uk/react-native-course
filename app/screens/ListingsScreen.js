@@ -10,30 +10,15 @@ import ActivityIndicator from '../components/ActivityIndicator'
 import Button from '../components/Button'
 import Text from '../components/Text'
 import routes from '../navigation/routes'
+import useApi from '../hooks/useApi'
 
 function ListingsScreen({navigation}) {
 
-    const [error, setError] = useState(false);
-    const [listings, setListings] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const {data: listings, loading, error, request: loadListings} = useApi(listingsApi.getListings)
 
     useEffect(() => {
-        loadListings();
+        loadListings(1, 2, 3);
     }, []);
-
-    const loadListings = async () => {
-        setLoading(true);
-        const response = await listingsApi.getListings();
-        setLoading(false);
-
-        if (!response.ok) {
-            setError(true);
-            return;
-        }
-
-        setError(false);
-        setListings(response.data);
-    }
 
     return (
         <Screen style={styles.screen}>

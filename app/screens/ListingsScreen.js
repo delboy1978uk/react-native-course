@@ -14,23 +14,23 @@ import useApi from '../hooks/useApi'
 
 function ListingsScreen({navigation}) {
 
-    const {data: listings, loading, error, request: loadListings} = useApi(listingsApi.getListings)
+    const getListingsApi = useApi(listingsApi.getListings)
 
     useEffect(() => {
-        loadListings();
+        getListingsApi.request();
     }, []);
 
     return (
         <Screen style={styles.screen}>
-            { error &&
+            { getListingsApi.error &&
                 <View>
                     <Text>Could not retrieve the listings</Text>
-                    <Button textColor={'white'} color={'primary'} title={'retry'} onPress={ loadListings }/>
+                    <Button textColor={'white'} color={'primary'} title={'retry'} onPress={ () => getListingsApi.request() }/>
                 </View>
             }
-            <ActivityIndicator visible={loading} />
+            <ActivityIndicator visible={getListingsApi.loading} />
             <FlatList
-                data={listings}
+                data={getListingsApi.data}
                 keyExtractor={listing => listing.id}
                 renderItem={ ({item}) =>
                     <Card

@@ -14,7 +14,7 @@ import useApi from '../hooks/useApi'
 
 function ListingsScreen({navigation}) {
 
-    const getListingsApi = useApi(listingsApi.getListings)
+    const getListingsApi = useApi(listingsApi.getListings);
 
     useEffect(() => {
         getListingsApi.request();

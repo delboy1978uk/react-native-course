@@ -3,8 +3,6 @@ import {StyleSheet} from "react-native";
 import * as Yup from "yup";
 
 import CategoryPickerItem from '../components/CategoryPickerItem'
-import useLocation from '../hooks/useLocation'
-import Screen from '../components/Screen'
 import {
     Form,
     FormField,
@@ -12,6 +10,11 @@ import {
     FormPicker,
     SubmitButton
 } from '../components/forms'
+import Screen from '../components/Screen'
+import Text from '../components/Text'
+import listingsApi from "../api/listings";
+import useApi from '../hooks/useApi'
+import useLocation from '../hooks/useLocation'
 
 const validationSchema = Yup.object().shape({
     title: Yup.string().required().min(1).label('Title'),
@@ -42,10 +45,20 @@ const categories = [
 
 
 function ListingEditScreen(props) {
+    const postListingsApi = useApi(listingsApi.postListings);
     const location = useLocation();
+    var result;
+
+    const processForm = (values, location) => {
+
+        console.log({...values, ...location});
+        result =  postListingsApi.request(values);
+        console.log(result);
+    }
 
     return (
         <Screen style={styles.container}>
+            {result && <Text>AYE</Text>}
             <Form
                 initialValues={{
                     title: '',
@@ -54,7 +67,9 @@ function ListingEditScreen(props) {
                     description: '',
                     images: []
             }}
-                onSubmit={values => console.log(values, location)}
+                onSubmit={values => {
+                    processForm(values, location)
+                }}
                 validationSchema={validationSchema}
             >
                 <FormImagePicker

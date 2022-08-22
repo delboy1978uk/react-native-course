@@ -12,7 +12,7 @@ const postListings = (listing) => {
     data.append('description', listing.description);
 
     if (listing.location) {
-        data.append('location', JSON.stringif y(listing.location));
+        data.append('location', JSON.stringify(listing.location));
     }
 
     listing.images.forEach((image, index) => {

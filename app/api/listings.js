@@ -4,11 +4,11 @@ const endpoint = '/listings';
 
 const getListings = () => apiClient.get(endpoint);
 
-const postListings = (listing) => {
+const postListings = listing => {
     const data = new FormData();
     data.append('title', listing.title);
     data.append('price', listing.price);
-    data.append('category', listing.category);
+    data.append('categoryId', listing.category.value);
     data.append('description', listing.description);
 
     if (listing.location) {
@@ -19,7 +19,7 @@ const postListings = (listing) => {
         data.append('images', {
             name: 'image' + index,
             type: 'image/jpeg',
-            uri: image.uri
+            uri: image
         })
     });
 

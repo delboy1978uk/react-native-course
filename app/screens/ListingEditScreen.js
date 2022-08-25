@@ -45,20 +45,22 @@ const categories = [
 
 
 function ListingEditScreen(props) {
-    const postListingsApi = useApi(listingsApi.postListings);
     const location = useLocation();
-    var result;
 
-    const processForm = (values, location) => {
+    const handleSubmit = async listing => {
+        const result =  await listingsApi.postListings({...listing, location});
 
-        console.log({...values, ...location});
-        result =  postListingsApi.request(values);
-        console.log(result);
+        if (!result.ok) {
+            alert('Could not save the listing.');
+            return;
+        }
+        console.log('result ok!');
+        alert('Success!');
     }
 
     return (
         <Screen style={styles.container}>
-            {result && <Text>AYE</Text>}
+
             <Form
                 initialValues={{
                     title: '',
@@ -67,9 +69,7 @@ function ListingEditScreen(props) {
                     description: '',
                     images: []
             }}
-                onSubmit={values => {
-                    processForm(values, location)
-                }}
+                onSubmit={handleSubmit}
                 validationSchema={validationSchema}
             >
                 <FormImagePicker

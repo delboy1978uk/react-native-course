@@ -14,6 +14,7 @@ import Screen from '../components/Screen'
 import Text from '../components/Text'
 import listingsApi from "../api/listings";
 import useApi from '../hooks/useApi'
+import UploadScreen from '../screens/UploadScreen'
 import useLocation from '../hooks/useLocation'
 
 const validationSchema = Yup.object().shape({
@@ -46,12 +47,16 @@ const categories = [
 
 function ListingEditScreen(props) {
     const location = useLocation();
+    const [progressVisible, setProgressVisible] = useState(false);
+    const [progress, setProgress] = useState(0);
 
     const handleSubmit = async listing => {
+        setProgressVisible(true);
         const result =  await listingsApi.postListings(
             {...listing, location},
-            progress => console.log(progress)
+            progress => setProgress(progress)
         );
+        setProgressVisible(false);
 
         if (!result.ok) {
             alert('Could not save the listing.');
@@ -63,7 +68,7 @@ function ListingEditScreen(props) {
 
     return (
         <Screen style={styles.container}>
-
+            <UploadScreen progress={progress} visible={progressVisible}/>
             <Form
                 initialValues={{
                     title: '',

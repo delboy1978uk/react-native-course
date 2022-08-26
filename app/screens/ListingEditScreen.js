@@ -57,19 +57,17 @@ function ListingEditScreen(props) {
             {...listing, location},
             progress => setProgress(progress)
         );
-        setProgressVisible(false);
 
         if (!result.ok) {
+            setProgressVisible(false);
             alert('Could not save the listing.');
             return;
         }
-        console.log('result ok!');
-        alert('Success!');
     }
 
     return (
         <Screen style={styles.container}>
-            <UploadScreen progress={progress} visible={progressVisible}/>
+            <UploadScreen onDone={() => setProgressVisible(false)} progress={progress} visible={progressVisible}/>
             <Form
                 initialValues={{
                     title: '',

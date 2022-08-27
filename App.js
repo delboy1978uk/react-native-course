@@ -8,7 +8,9 @@ import WelcomeScreen from "./app/screens/WelcomeScreen"
 import navigationTheme from "./app/navigation/NavigationTheme"
 
 export default function App() {
-    NetInfo.fetch().then(netInfo => console.log(netInfo));
+    const unsubscribe = NetInfo.addEventListener(netInfo => console.log(netInfo));
+    unsubscribe();
+
 
     return(
         <NavigationContainer theme={navigationTheme}>

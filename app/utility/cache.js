@@ -4,10 +4,10 @@ import moment from "moment";
 const prefix = 'cache';
 const expiryInMinutes = 5;
 
-const store = async (key, valuse) => {
+const store = async (key, value) => {
     try {
         const item = {
-            value,
+            value: value,
             timeatamp: Date.now()
         };
         await  AsyncStorage.setItem(prefix + key, JSON.stringify(item));
@@ -24,14 +24,13 @@ const get = async (key) => {
         if (!item) {
             return null;
         }
-        
+
         if (isExpired(item)) {
             await AsyncStorage.removeItem(prefix + key);
 
             return null;
         }
 
-        console.log(item.value);
         return item.value;
 
     } catch (error) {

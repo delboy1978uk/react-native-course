@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Image, StyleSheet, View} from "react-native";
+import jwtDecode from "jwt-decode";
 import {useNavigation} from "@react-navigation/native";
 import * as Yup from 'yup'
 
@@ -24,7 +25,8 @@ function LoginScreen(props) {
         }
 
         setLoginFailed(false);
-        console.log(result.data);
+        const user = jwtDecode(result.data);
+        console.log(user);
     };
 
     return (

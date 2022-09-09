@@ -5,6 +5,7 @@ import NetInfo, {useNetInfo} from '@react-native-community/netinfo';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import AppNavigator from "./app/navigation/AppNavigator"
+import AuthNavigator from "./app/navigation/AuthNavigator"
 import Button from "./app/components/Button"
 import OfflineNotice from "./app/components/OfflineNotice"
 import Text from "./app/components/Text"
@@ -18,7 +19,7 @@ export default function App() {
         <View style={{flex:1}}>
             <OfflineNotice />
             <NavigationContainer theme={navigationTheme}>
-                <AppNavigator />
+                <AuthNavigator />
             </NavigationContainer>
         </View>
     )

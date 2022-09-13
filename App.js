@@ -4,7 +4,7 @@ import {NavigationContainer} from "@react-navigation/native";
 import NetInfo, {useNetInfo} from '@react-native-community/netinfo';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import jwtDecode from 'jwt-decode';
-import {AppLoading} from 'expo-app-loading';
+import AppLoading from 'expo-app-loading';
 
 import AuthContext from "./app/auth/context"
 import authStorage from "./app/auth/storage"
@@ -33,7 +33,11 @@ export default function App() {
 
     if (!isReady) {
         return (
-            <AppLoading startAsync={restoreToken} onFinish={() => setIsReady(true)} />
+            <AppLoading
+                startAsync={restoreToken}
+                onFinish={() => setIsReady(true)}
+                onError={console.error}
+            />
         )
     } else {
         return(

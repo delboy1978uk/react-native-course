@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {StyleSheet, View} from "react-native";
 import {NavigationContainer} from "@react-navigation/native";
 import NetInfo, {useNetInfo} from '@react-native-community/netinfo';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import jwtDecode from 'jwt-decode';
-import AppLoading from 'expo-app-loading';
+import * as SplashScreen from 'expo-splash-screen';
 
 import AuthContext from "./app/auth/context"
 import authStorage from "./app/auth/storage"
@@ -16,6 +16,8 @@ import Text from "./app/components/Text"
 import WelcomeScreen from "./app/screens/WelcomeScreen"
 import navigationTheme from "./app/navigation/NavigationTheme"
 import Screen from "./app/components/Screen";
+
+SplashScreen.preventAutoHideAsync();
 
 export default function App() {
     const [user, setUser] = useState();
@@ -31,22 +33,38 @@ export default function App() {
         setUser(jwtDecode(token));
     };
 
+    useEffect(() => {
+        async function prepare() {
+            try {
+                await restoreToken();
+            } catch (e) {
+                console.warn(e);
+            } finally {
+                setIsReady(true);
+            }
+        }
+
+        prepare();
+    }, []);
+
+    const onLayoutRootView = useCallback(async () => {
+        if (isReady) {
+            await SplashScreen.hideAsync();
+        }
+    }, [isReady]);
+
     if (!isReady) {
-        return (
-            <AppLoading
-                startAsync={restoreToken}
-                onFinish={() => setIsReady(true)}
-                onError={console.error}
-            />
-        )
-    } else {
-        return(
-            <AuthContext.Provider value={{user, setUser}}>
-                <OfflineNotice />
-                <NavigationContainer theme={navigationTheme} >
-                    { user ? <AppNavigator /> : <AuthNavigator /> }
-                </NavigationContainer>
-            </AuthContext.Provider>
-        )
+        return null;
     }
+
+    return (
+        <View style={{height: '100%'}} onLayout={onLayoutRootView}>
+            <AuthContext.Provider value={{user, setUser}}>
+                    <OfflineNotice/>
+                    <NavigationContainer theme={navigationTheme}>
+                        {user ? <AppNavigator/> : <AuthNavigator/>}
+                    </NavigationContainer>
+            </AuthContext.Provider>
+        </View>
+    )
 }

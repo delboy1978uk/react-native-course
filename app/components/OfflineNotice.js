@@ -7,7 +7,6 @@ import Text from "./Text";
 
 function OfflineNotice(props) {
     const netInfo = useNetInfo();
-    console.log(netInfo);
 
     if (netInfo.type !== 'unkown' && netInfo.isInternetReachable === false) {
         return(

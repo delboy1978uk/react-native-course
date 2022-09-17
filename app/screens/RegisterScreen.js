@@ -46,8 +46,8 @@ function RegisterScreen(props) {
 
     return (
         <>
-        <ActivityIndicator visible={registerApi.loading || loginApi.loading} />
-            {!registerApi.loading && !loginApi.loading && <Screen style={styles.container}>
+        <ActivityIndicator visible={registerApi.loading || loginApi.loading} type={'overlay'}/>
+            <Screen style={styles.container}>
             <Image style={styles.logo} source={require('../assets/logo-red.png')} />
 
             <Form
@@ -80,7 +80,7 @@ function RegisterScreen(props) {
                 />
                 <SubmitButton color="primary" title="Register" />
             </Form>
-        </Screen>}
+        </Screen>
         </>
     );
 }

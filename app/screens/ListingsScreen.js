@@ -21,6 +21,8 @@ function ListingsScreen({navigation}) {
     }, []);
 
     return (
+        <>
+        <ActivityIndicator visible={getListingsApi.loading}  type={'overlay'}/>
         <Screen style={styles.screen}>
             { getListingsApi.error &&
                 <View>
@@ -28,7 +30,6 @@ function ListingsScreen({navigation}) {
                     <Button textColor={'white'} color={'primary'} title={'retry'} onPress={ () => getListingsApi.request() }/>
                 </View>
             }
-            <ActivityIndicator visible={getListingsApi.loading} />
             <FlatList
                 data={getListingsApi.data}
                 keyExtractor={listing => listing.id}
@@ -43,6 +44,7 @@ function ListingsScreen({navigation}) {
                 }
             />
         </Screen>
+        </>
     );
 }
 

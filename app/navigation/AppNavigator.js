@@ -3,9 +3,9 @@ import {StyleSheet, View} from "react-native";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {MaterialCommunityIcons} from "@expo/vector-icons";
 import * as Notifications from 'expo-notifications';
-import * as Permissions from 'expo-permissions';
 
 import AccountNavigator from "../navigation/AccountNavigator";
+import expoPushTokensApi from '../api/expoPushTokens';
 import ListingEditScreen from "../screens/ListingEditScreen";
 import ListingsScreen from "../screens/ListingsScreen";
 import NewListingButton from "../navigation/NewListingButton";
@@ -22,14 +22,15 @@ function AppNavigator(props) {
 
     const registerForPushNotifications = async () => {
         try {
-            const permission = await Notifications.requestPermissionsAsync(Permissions.NOTIFICATIONS);
+            const permission = await Notifications.requestPermissionsAsync();
 
             if (!permission.granted) {
                 return;
             }
 
             const token = await Notifications.getExpoPushTokenAsync();
-            console.log(token);
+            const x = await expoPushTokensApi.register(token.data);
+            console.log(token.data, x);
         } catch (error) {
             console.log('Error getting a push token', error);
         }

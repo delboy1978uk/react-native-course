@@ -1,4 +1,5 @@
-import React, {useEffect} from 'react';
+import * as Device from 'expo-device';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, View} from "react-native";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {MaterialCommunityIcons} from "@expo/vector-icons";
@@ -16,25 +17,44 @@ import routes from "../navigation/routes";
 const Tab = createBottomTabNavigator();
 
 function AppNavigator(props) {
+    const {token, setToken} = useState(null);
+
     useEffect(() => {
         registerForPushNotifications();
     }, []);
 
-    const registerForPushNotifications = async () => {
-        try {
-            const permission = await Notifications.requestPermissionsAsync();
+    const registerForPushNotifications = () => registerForPushNotificationsAsync();
+    
+    const registerForPushNotificationsAsync = async () => {
+        if (Device.isDevice) {
+            const { status: existingStatus } = await Notifications.getPermissionsAsync();
+            let finalStatus = existingStatus;
 
-            if (!permission.granted) {
+            if (existingStatus !== 'granted') {
+                const { status } = await Notifications.requestPermissionsAsync();
+                finalStatus = status;
+            }
+            if (finalStatus !== 'granted') {
+                console.log('not granted');
                 return;
             }
+            const token = (await Notifications.getExpoPushTokenAsync()).data;
+            console.log(token);
+            setToken(token);
+        } else {
+            alert('Must use physical device for Push Notifications');
+        }
 
-            const token = await Notifications.getExpoPushTokenAsync();
-            const x = await expoPushTokensApi.register(token.data);
-            console.log(token.data, x);
-        } catch (error) {
-            console.log('Error getting a push token', error);
+        if (Platform.OS === 'android') {
+            Notifications.setNotificationChannelAsync('default', {
+                name: 'default',
+                importance: Notifications.AndroidImportance.MAX,
+                vibrationPattern: [0, 250, 250, 250],
+                lightColor: '#FF231F7C',
+            });
         }
     };
+
 
     return (
         <Tab.Navigator

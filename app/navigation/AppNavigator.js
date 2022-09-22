@@ -21,10 +21,11 @@ function AppNavigator(props) {
 
     useEffect(() => {
         registerForPushNotifications();
+        Notifications.addNotificationReceivedListener(notification => console.log(notification));
     }, []);
 
     const registerForPushNotifications = () => registerForPushNotificationsAsync();
-    
+
     const registerForPushNotificationsAsync = async () => {
         if (Device.isDevice) {
             const { status: existingStatus } = await Notifications.getPermissionsAsync();
@@ -39,8 +40,7 @@ function AppNavigator(props) {
                 return;
             }
             const token = (await Notifications.getExpoPushTokenAsync()).data;
-            console.log(token);
-            setToken(token);
+            expoPushTokensApi.register(token);
         } else {
             alert('Must use physical device for Push Notifications');
         }

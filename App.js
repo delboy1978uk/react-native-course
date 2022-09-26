@@ -11,6 +11,7 @@ import AppNavigator from "./app/navigation/AppNavigator"
 import AuthNavigator from "./app/navigation/AuthNavigator"
 import Button from "./app/components/Button"
 import OfflineNotice from "./app/components/OfflineNotice"
+import navigation from "./app/navigation/rootNavigation"
 import Text from "./app/components/Text"
 import WelcomeScreen from "./app/screens/WelcomeScreen"
 import navigationTheme from "./app/navigation/NavigationTheme"
@@ -57,10 +58,10 @@ export default function App() {
     return (
         <View style={{height: '100%'}} onLayout={onLayoutRootView}>
             <AuthContext.Provider value={{user, setUser}}>
-                    <OfflineNotice/>
-                    <NavigationContainer theme={navigationTheme}>
-                        {user ? <AppNavigator/> : <AuthNavigator/>}
-                    </NavigationContainer>
+                <OfflineNotice/>
+                <NavigationContainer ref={navigation.navigationRef} theme={navigationTheme}>
+                    {user ? <AppNavigator/> : <AuthNavigator/>}
+                </NavigationContainer>
             </AuthContext.Provider>
         </View>
     )

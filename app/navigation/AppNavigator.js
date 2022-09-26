@@ -13,6 +13,7 @@ import NewListingButton from "../navigation/NewListingButton";
 import FeedNavigator from "../navigation/FeedNavigator";
 import Icon from "../components/Icon";
 import routes from "../navigation/routes";
+import navigation from "../navigation/rootNavigation"
 
 const Tab = createBottomTabNavigator();
 
@@ -21,7 +22,9 @@ function AppNavigator(props) {
 
     useEffect(() => {
         registerForPushNotifications();
-        Notifications.addNotificationReceivedListener(notification => console.log(notification));
+        Notifications.addNotificationReceivedListener(notification => {
+            navigation.navigate('Summary');
+        });
     }, []);
 
     const registerForPushNotifications = () => registerForPushNotificationsAsync();

@@ -19,8 +19,8 @@ function ListingDetailsScreen({ route }) {
     const sendNotification = async () => {
         await Notifications.scheduleNotificationAsync({
             content: {
-                title: "Time to ROCK 😎",
-                body: 'Welcome to sell that shit!',
+                title: "SELL that SHIT 😎",
+                body: 'Someone wants to buy your shit',
                 data: { data: 'goes here' },
             },
             trigger: { seconds: 2 },
@@ -30,10 +30,7 @@ function ListingDetailsScreen({ route }) {
     const triggerNotification = () => {
         sendNotification()
     }
-
-    useEffect(triggerNotification, []);
-
-
+    
     const listing = route.params;
 
     return (

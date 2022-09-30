@@ -11,7 +11,6 @@ const validationSchema = Yup.object().shape({
     email: Yup.string().required().email().label('Email'),
     password: Yup.string().required().min(4).label('Password'),
 });
-
 function LoginScreen(props) {
     const {login, user} = useAuth();
     const [loginFailed, setLoginFailed] = useState(false);

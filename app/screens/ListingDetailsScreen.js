@@ -1,14 +1,40 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, View} from "react-native";
 import {Image} from 'react-native-expo-image-cache';
 
 import colors from '../config/colors'
 import Text from '../components/Text'
 import ListItem from '../components/ListItem'
+import * as Notifications from "expo-notifications";
+
+Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+        shouldShowAlert: true,
+        shouldPlaySound: true,
+        shouldSetBadge: true,
+    }),
+});
 
 function ListingDetailsScreen({ route }) {
+    const sendNotification = async () => {
+        await Notifications.scheduleNotificationAsync({
+            content: {
+                title: "Time to ROCK 😎",
+                body: 'Welcome to sell that shit!',
+                data: { data: 'goes here' },
+            },
+            trigger: { seconds: 2 },
+        });
+    }
+
+    const triggerNotification = () => {
+        sendNotification()
+    }
+
+    useEffect(triggerNotification, []);
+
+
     const listing = route.params;
-    console.log(listing)
 
     return (
         <View>

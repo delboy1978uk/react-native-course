@@ -1,11 +1,12 @@
 import React, {useEffect} from 'react';
 import {StyleSheet, View} from "react-native";
 import {Image} from 'react-native-expo-image-cache';
+import * as Notifications from "expo-notifications";
+import * as Yup from "yup";
 
 import colors from '../config/colors'
-import Text from '../components/Text'
 import ListItem from '../components/ListItem'
-import * as Notifications from "expo-notifications";
+import Text from '../components/Text'
 
 Notifications.setNotificationHandler({
     handleNotification: async () => ({
@@ -13,6 +14,10 @@ Notifications.setNotificationHandler({
         shouldPlaySound: true,
         shouldSetBadge: true,
     }),
+});
+
+const validationSchema = Yup.object().shape({
+    message: Yup.string().required().min(2).label('Message seller')
 });
 
 function ListingDetailsScreen({ route }) {
@@ -30,7 +35,7 @@ function ListingDetailsScreen({ route }) {
     const triggerNotification = () => {
         sendNotification()
     }
-    
+
     const listing = route.params;
 
     return (

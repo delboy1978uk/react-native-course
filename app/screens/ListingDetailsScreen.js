@@ -1,12 +1,18 @@
 import React, {useEffect} from 'react';
-import {StyleSheet, View} from "react-native";
+import {KeyboardAvoidingView, StyleSheet, View} from "react-native";
 import {Image} from 'react-native-expo-image-cache';
 import * as Notifications from "expo-notifications";
 import * as Yup from "yup";
 
 import colors from '../config/colors'
+import {
+    Form,
+    FormField,
+    SubmitButton
+} from '../components/forms'
 import ListItem from '../components/ListItem'
 import Text from '../components/Text'
+import listingsApi from "../api/listings";
 
 Notifications.setNotificationHandler({
     handleNotification: async () => ({
@@ -21,25 +27,30 @@ const validationSchema = Yup.object().shape({
 });
 
 function ListingDetailsScreen({ route }) {
-    const sendNotification = async () => {
+    const sendNotification = async ({message}) => {
         await Notifications.scheduleNotificationAsync({
             content: {
                 title: "SELL that SHIT 😎",
-                body: 'Someone wants to buy your shit',
+                body: message,
                 data: { data: 'goes here' },
             },
             trigger: { seconds: 2 },
         });
     }
 
-    const triggerNotification = () => {
-        sendNotification()
+    const handleSubmit = async (message, { resetForm }) => {
+        sendNotification(message);
+        resetForm();
     }
 
     const listing = route.params;
 
     return (
-        <View>
+        <KeyboardAvoidingView
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            style={styles.container}
+            enabled={true}
+        >
             <Image style={styles.image} tint="light" preview={{uri: listing.images[0].thumbnailUrl}} uri={listing.images[0].url } />
             <View style={styles.detailsContainer}>
                 <Text style={styles.title}>{listing.title}</Text>
@@ -51,12 +62,29 @@ function ListingDetailsScreen({ route }) {
                         subtitle="5 listings"
                     />
                 </View>
+                <Form
+                    initialValues={{
+                        message: '',
+                    }}
+                    onSubmit={handleSubmit}
+                    validationSchema={validationSchema}
+                >
+                    <FormField
+                        name="message"
+                        maxLength={255}
+                        placeholder="Message"
+                    />
+                    <SubmitButton color="primary" title="Contact Seller" />
+                </Form>
             </View>
-        </View>
+        </KeyboardAvoidingView>
     );
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    },
     image: {
         width: '100%',
         height: 300
@@ -65,7 +93,7 @@ const styles = StyleSheet.create({
         padding: 20,
     },
     userContainer: {
-        marginVertical: 30,
+        marginVertical: 15,
     },
     title: {
         fontSize: 24,

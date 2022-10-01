@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet} from "react-native";
+import {KeyboardAvoidingView, StyleSheet} from "react-native";
 import * as Yup from "yup";
 
 import CategoryPickerItem from '../components/CategoryPickerItem'
@@ -70,49 +70,54 @@ function ListingEditScreen(props) {
     return (
         <Screen style={styles.container}>
             <UploadScreen onDone={() => setProgressVisible(false)} progress={progress} visible={progressVisible}/>
-            <Form
-                initialValues={{
-                    title: '',
-                    price: '',
-                    category: '',
-                    description: '',
-                    images: []
-            }}
-                onSubmit={handleSubmit}
-                validationSchema={validationSchema}
+            <KeyboardAvoidingView
+                behavior="position"
+                keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 140}
             >
-                <FormImagePicker
-                    name={'images'}
-                />
-                <FormField
-                    name="title"
-                    placeholder="Title"
-                    maxLength={150}
-                />
-                <FormField
-                    name="price"
-                    placeholder="Price"
-                    keyboardType="decimal-pad"
-                    maxLength={8}
-                    width={120}
-                />
-                <FormPicker
-                    items={categories}
-                    name="category"
-                    numColumns={3}
-                    PickerItemComponent={CategoryPickerItem}
-                    placeholder="Category"
-                    width={300}
-                />
-                <FormField
-                    name="description"
-                    maxLength={255}
-                    multiline
-                    numberOfLines={3}
-                    placeholder="Description"
-                />
-                <SubmitButton color="primary" title="Add Listing" />
-            </Form>
+                <Form
+                    initialValues={{
+                        title: '',
+                        price: '',
+                        category: '',
+                        description: '',
+                        images: []
+                }}
+                    onSubmit={handleSubmit}
+                    validationSchema={validationSchema}
+                >
+                    <FormImagePicker
+                        name={'images'}
+                    />
+                    <FormField
+                        name="title"
+                        placeholder="Title"
+                        maxLength={150}
+                    />
+                    <FormField
+                        name="price"
+                        placeholder="Price"
+                        keyboardType="decimal-pad"
+                        maxLength={8}
+                        width={120}
+                    />
+                    <FormPicker
+                        items={categories}
+                        name="category"
+                        numColumns={3}
+                        PickerItemComponent={CategoryPickerItem}
+                        placeholder="Category"
+                        width={300}
+                    />
+                    <FormField
+                        name="description"
+                        maxLength={255}
+                        multiline
+                        numberOfLines={3}
+                        placeholder="Description"
+                    />
+                    <SubmitButton color="primary" title="Add Listing" />
+                </Form>
+            </KeyboardAvoidingView>
         </Screen>
     );
 }

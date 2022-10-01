@@ -47,9 +47,8 @@ function ListingDetailsScreen({ route }) {
 
     return (
         <KeyboardAvoidingView
-            behavior={Platform.OS === "ios" ? "padding" : "height"}
-            style={styles.container}
-            enabled={true}
+            behavior="position"
+            keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 100}
         >
             <Image style={styles.image} tint="light" preview={{uri: listing.images[0].thumbnailUrl}} uri={listing.images[0].url } />
             <View style={styles.detailsContainer}>
@@ -87,13 +86,13 @@ const styles = StyleSheet.create({
     },
     image: {
         width: '100%',
-        height: 300
+        height: 250
     },
     detailsContainer: {
         padding: 20,
     },
     userContainer: {
-        marginVertical: 15,
+        marginVertical: 5,
     },
     title: {
         fontSize: 24,

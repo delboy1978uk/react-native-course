@@ -5,43 +5,12 @@ import * as Notifications from "expo-notifications";
 import * as Yup from "yup";
 
 import colors from '../config/colors'
-import {
-    Form,
-    FormField,
-    SubmitButton
-} from '../components/forms'
+import ContactSellerForm from '../components/ContactSellerForm';
 import ListItem from '../components/ListItem'
 import Text from '../components/Text'
 import listingsApi from "../api/listings";
 
-Notifications.setNotificationHandler({
-    handleNotification: async () => ({
-        shouldShowAlert: true,
-        shouldPlaySound: true,
-        shouldSetBadge: true,
-    }),
-});
-
-const validationSchema = Yup.object().shape({
-    message: Yup.string().required().min(2).label('Message seller')
-});
-
 function ListingDetailsScreen({ route }) {
-    const sendNotification = async ({message}) => {
-        await Notifications.scheduleNotificationAsync({
-            content: {
-                title: "SELL that SHIT 😎",
-                body: message,
-                data: { data: 'goes here' },
-            },
-            trigger: { seconds: 2 },
-        });
-    }
-
-    const handleSubmit = async (message, { resetForm }) => {
-        sendNotification(message);
-        resetForm();
-    }
 
     const listing = route.params;
 
@@ -61,21 +30,8 @@ function ListingDetailsScreen({ route }) {
                         subtitle="5 listings"
                     />
                 </View>
-                <Form
-                    initialValues={{
-                        message: '',
-                    }}
-                    onSubmit={handleSubmit}
-                    validationSchema={validationSchema}
-                >
-                    <FormField
-                        name="message"
-                        maxLength={255}
-                        placeholder="Message"
-                    />
-                    <SubmitButton color="primary" title="Contact Seller" />
-                </Form>
             </View>
+            <ContactSellerForm listing={listing} />
         </KeyboardAvoidingView>
     );
 }

@@ -2,6 +2,7 @@
   "expo": {
     "name": "DoneWithIt",
     "owner": "delboy1978uk",
+    "privacy": "unlisted", // or public
     "slug": "donewithit",
     "version": "1.0.0",
     "orientation": "portrait",

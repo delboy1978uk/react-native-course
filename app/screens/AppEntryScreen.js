@@ -5,21 +5,24 @@ import NetInfo, {useNetInfo} from '@react-native-community/netinfo';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as SplashScreen from 'expo-splash-screen';
 
-import AuthContext from "../auth/context"
-import authStorage from "../auth/storage"
 import AppNavigator from "../navigation/AppNavigator"
+import AuthContext from "../auth/context"
 import AuthNavigator from "../navigation/AuthNavigator"
+import authStorage from "../auth/storage"
 import Button from "../components/Button"
-import OfflineNotice from "../components/OfflineNotice"
+import logger from '..//utility/logger';
 import navigation from "../navigation/rootNavigation"
+import navigationTheme from "../navigation/NavigationTheme"
+import OfflineNotice from "../components/OfflineNotice"
+import Screen from "../components/Screen";
 import Text from "../components/Text"
 import WelcomeScreen from "../screens/WelcomeScreen"
-import navigationTheme from "../navigation/NavigationTheme"
-import Screen from "../components/Screen";
 
+logger.start();
 SplashScreen.preventAutoHideAsync();
 
 export default function AppEntryScreen() {
+
     const [user, setUser] = useState();
     const [isReady, setIsReady] = useState(false);
 
